@@ -1,0 +1,16 @@
+.leftSidePannel{
+    background: #FFF;
+    width: 23vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-items: center; */
+    
+}
+
+
+@media (max-width: 600px) {
+    .leftSidePannel{
+        width: 100vw;
+    }
+}
