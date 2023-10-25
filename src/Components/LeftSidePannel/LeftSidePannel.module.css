@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   padding: 1.5% 1.5% 1.5% 1.5%;
-
+  overflow-x: hidden;
   overflow-y: scroll;
 }
 
@@ -63,6 +63,9 @@
 @media (max-width: 600px) {
   .leftSidePannel {
     width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
 
   .createNotesGroup {
@@ -88,4 +91,10 @@
     width: 100vw;
     height: 2.375rem;
   }
+
+  .notesGroupSlected:active {
+    width: 97vw;
+  }
+
 }
+
