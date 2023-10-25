@@ -26,24 +26,24 @@ const HomeMainPage = () => {
         center={true}
         showCloseIcon={false}
       >
-        <h2>Create New Notes group</h2>
+        <h2 className={StyleHomeMainPage.Text1}>Create New Notes group</h2>
         <form action="">
           <p>
-            <label htmlFor="GroupName">
-            Group Name
-              <input type="text" />
+            <label htmlFor="GroupName" >
+           <span className={StyleHomeMainPage.Text2}> Group Name</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text"  placeholder="   Enter your group name...." className={StyleHomeMainPage.placeHold}/>
             </label>
           </p>
           <p className={StyleHomeMainPage.Choosecolour}>
             <label htmlFor="Choosecolour">
-            Choose colour
-            <span className="StyleHomeMainPage.ChoosecolourBreak">
-              <button type="button" className={StyleHomeMainPage.colorButton1}></button>
-              <button type="button" className={StyleHomeMainPage.colorButton2}></button>
-              <button type="button" className={StyleHomeMainPage.colorButton3}></button>
-              <button type="button" className={StyleHomeMainPage.colorButton4}></button>
-              <button type="button" className={StyleHomeMainPage.colorButton5}></button>
-              <button type="button" className={StyleHomeMainPage.colorButton6}></button>
+            <span className={StyleHomeMainPage.Text2}>Choose colour</span>
+            <span className="StyleHomeMainPage.ChoosecolourBreak">&nbsp;&nbsp;
+              <button type="button" className={StyleHomeMainPage.colorButton1}></button>&nbsp;&nbsp;
+              <button type="button" className={StyleHomeMainPage.colorButton2}></button>&nbsp;&nbsp;
+              <button type="button" className={StyleHomeMainPage.colorButton3}></button>&nbsp;&nbsp;
+              <button type="button" className={StyleHomeMainPage.colorButton4}></button>&nbsp;&nbsp;
+              <button type="button" className={StyleHomeMainPage.colorButton5}></button>&nbsp;&nbsp;
+              <button type="button" className={StyleHomeMainPage.colorButton6}></button>&nbsp;&nbsp;
               </span>
             </label>
           </p>
