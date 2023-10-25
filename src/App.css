@@ -14,3 +14,7 @@ img{
   -moz-user-drag: none;  
   -o-user-drag: none; 
 }
+
+button{
+  cursor: pointer;
+}
