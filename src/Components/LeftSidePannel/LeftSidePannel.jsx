@@ -13,8 +13,7 @@ const LeftSidePannel = () => {
         <div>
           <br />
           <div className={StylesLeftSidePannel.notesGroupSlected}>
-          <button style={{width: "100%"}}><NotesGroup  /></button>
-          
+          <NotesGroup  />
           </div>
         </div>
       </div>
