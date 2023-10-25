@@ -1,3 +1,51 @@
 .homeMainPage{
     display: flex;
 }
+
+.colorButton1{
+    border-radius: 50%;
+    min-width: 29px;
+    min-height: 29px;
+    background-color: #B38BFA;
+    border: 0px solid #b48bfa00;
+}
+
+.colorButton2{
+    border-radius: 50%;
+    min-width: 29px;
+    min-height: 29px;
+    background-color: #FF79F2;
+    border: 0px solid #b48bfa00;
+}
+
+.colorButton3{
+    border-radius: 50%;
+    min-width: 29px;
+    min-height: 29px;
+    background-color: #43E6FC;
+    border: 0px solid #b48bfa00;
+}
+
+.colorButton4{
+    border-radius: 50%;
+    min-width: 29px;
+    min-height: 29px;
+    background-color: #F19576;
+    border: 0px solid #b48bfa00;
+}
+
+.colorButton5{
+    border-radius: 50%;
+    min-width: 29px;
+    min-height: 29px;
+    background-color: #0047FF;
+    border: 0px solid #b48bfa00;
+}
+
+.colorButton6{
+    border-radius: 50%;
+    min-width: 29px;
+    min-height: 29px;
+    background-color: #6691FF;
+    border: 0px solid #b48bfa00;
+}
