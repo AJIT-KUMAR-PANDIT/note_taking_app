@@ -1,9 +1,8 @@
 import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
-import { useState } from "react";
 
 
-const LeftSidePannel = () => {
+const LeftSidePannel = ({ handleClick }) => {
 
 
 
@@ -13,7 +12,7 @@ const LeftSidePannel = () => {
       <h1>Pocket Notes</h1>
       <div className={StylesLeftSidePannel.center}>
         
-        <button className={StylesLeftSidePannel.createNotesGroup} >
+        <button className={StylesLeftSidePannel.createNotesGroup} onClick={() => handleClick(true)}>
           {" "}
           <img src="assets/+.svg" alt="+" style={{ minWidth: "21px" }}/> Create Notes group
         </button>
