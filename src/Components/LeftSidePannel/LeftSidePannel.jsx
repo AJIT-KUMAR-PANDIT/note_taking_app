@@ -58,6 +58,13 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
 
 
 
+  const [isClicked, setIsClicked] = useState(false);
+
+// handling notes section
+
+const handleNotesChange = (e) => {
+  
+}
 
 
 
@@ -89,6 +96,7 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
                   key={group.id}
                   groupName={group.groupName}
                   color={group.color}
+                  onClick={handleNotesChange}
                 />
                 </div>
               ) : null
