@@ -63,7 +63,7 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
 
 // handling notes section
 
-const handleNotesChange = (e) => {
+const handleNotesChange = () => {
   
 }
 
