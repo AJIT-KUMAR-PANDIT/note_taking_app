@@ -2,26 +2,23 @@ import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
 
 const LeftSidePannel = ({ handleClick, groupName, color, create }) => {
-  
-//   storing data
-  const dataStoreGroupNames ={
+  //   storing data
+  const dataStoreGroupNames = {
     id: 0,
     groupName: groupName,
     color: color,
-    create: create
+    create: create,
   };
   const StringDataStoreGroupNames = JSON.stringify(dataStoreGroupNames);
-  localStorage.setItem("myData", StringDataStoreGroupNames);
-  
-// reteriving data
+  localStorage.setItem("myGroupNamesData", StringDataStoreGroupNames);
 
-const storedDataString = localStorage.getItem("myData");
-const storedData = JSON.parse(storedDataString);
+//   reading data
+  const storedDataString = localStorage.getItem("myGroupNamesData");
+  const storedData = JSON.parse(storedDataString);
 
+  //   {console.log(groupName,color)}
 
-//   {console.log(groupName,color)}
-  
-    return (
+  return (
     <div className={StylesLeftSidePannel.leftSidePannel}>
       <h1>Pocket Notes</h1>
       <div className={StylesLeftSidePannel.center}>
@@ -36,7 +33,12 @@ const storedData = JSON.parse(storedDataString);
         <div>
           <br />
           <div className={StylesLeftSidePannel.notesGroupSlected}>
-            {storedData.create ? <NotesGroup groupName={storedData.groupName} color={storedData.color} /> : null}
+            {storedData.create ? (
+              <NotesGroup
+                groupName={storedData.groupName}
+                color={storedData.color}
+              />
+            ) : null}
           </div>
         </div>
       </div>

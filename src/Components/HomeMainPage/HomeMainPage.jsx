@@ -7,24 +7,27 @@ import { Modal } from "react-responsive-modal";
 
 const HomeMainPage = () => {
   const [open, setOpen] = React.useState(false);
+
+  const storedDataString = localStorage.getItem("myData");
+  const storedData = JSON.parse(storedDataString);
+
   const [createGroup, setCreateGroup] = React.useState({
-    groupName: "",
-    color: "",
-    create: false
+    groupName: storedData ? storedData.groupName : "",
+    color: storedData ? storedData.color : "",
+    create: storedData ? storedData.create : "",
   });
 
-  const {groupName, color, create} = createGroup;
+  const { groupName, color, create } = createGroup;
   const handleClick = (open) => {
     setOpen(open);
   };
 
+  const handleNotesChange = (e) => {
+    setCreateGroup({ ...createGroup, groupName: e.target.value });
+  };
 
-  const handleNotesChange=(e)=>{
-    setCreateGroup({...createGroup,groupName:e.target.value})
-  }
-
-const handleSubmit = (e) => {
-    setCreateGroup({...createGroup,create:true});
+  const handleSubmit = (e) => {
+    setCreateGroup({ ...createGroup, create: true });
     e.preventDefault();
     setOpen(false);
   };
@@ -32,10 +35,15 @@ const handleSubmit = (e) => {
   return (
     <>
       <div className={StyleHomeMainPage.homeMainPage}>
-        <LeftSidePannel handleClick={handleClick} groupName={groupName} color={color} create={create}/>
+        <LeftSidePannel
+          handleClick={handleClick}
+          groupName={groupName}
+          color={color}
+          create={create}
+        />
         <RightSidePannel />
       </div>
-{/* {console.log(groupName,color)} */}
+      {/* {console.log(groupName,color)} */}
       {/* ?,modal  #################################################################### */}
       <Modal
         open={open}
@@ -54,7 +62,7 @@ const handleSubmit = (e) => {
                 type="text"
                 placeholder="   Enter your group name...."
                 className={StyleHomeMainPage.placeHold}
-                onChange={(e) =>handleNotesChange(e)}
+                onChange={(e) => handleNotesChange(e)}
               />
             </label>
           </p>
@@ -66,37 +74,49 @@ const handleSubmit = (e) => {
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton1}
-                  onClick={() => setCreateGroup({...createGroup,color:"#B38BFA"})}
+                  onClick={() =>
+                    setCreateGroup({ ...createGroup, color: "#B38BFA" })
+                  }
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton2}
-                  onClick={() => setCreateGroup({...createGroup,color:"#FF79F2"})}
+                  onClick={() =>
+                    setCreateGroup({ ...createGroup, color: "#FF79F2" })
+                  }
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton3}
-                  onClick={() => setCreateGroup({...createGroup,color:"#43E6FC"})}
+                  onClick={() =>
+                    setCreateGroup({ ...createGroup, color: "#43E6FC" })
+                  }
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton4}
-                  onClick={() => setCreateGroup({...createGroup,color:"#F19576"})}
+                  onClick={() =>
+                    setCreateGroup({ ...createGroup, color: "#F19576" })
+                  }
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton5}
-                  onClick={() => setCreateGroup({...createGroup,color:"#0047FF"})}
+                  onClick={() =>
+                    setCreateGroup({ ...createGroup, color: "#0047FF" })
+                  }
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton6}
-                  onClick={() => setCreateGroup({...createGroup,color:"#6691FF"})}
+                  onClick={() =>
+                    setCreateGroup({ ...createGroup, color: "#6691FF" })
+                  }
                 ></button>
                 &nbsp;&nbsp;
               </span>
