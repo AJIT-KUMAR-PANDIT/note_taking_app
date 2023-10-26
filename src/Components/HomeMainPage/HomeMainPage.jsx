@@ -1,23 +1,52 @@
 import LeftSidePannel from "../LeftSidePannel/LeftSidePannel";
 import RightSidePannel from "../RightSidePannel/RightSidePannel";
 import StyleHomeMainPage from "./HomeMainPage.module.css";
-import React from "react";
+import React, { useState } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 
 const HomeMainPage = () => {
   const [open, setOpen] = React.useState(false);
+  const [colorChoice, setColorChoice] = React.useState(false);
 
-  const storedDataString = localStorage.getItem("myData");
-  const storedData = JSON.parse(storedDataString);
+  // //   checking stored data
+  //   const storedDataString = localStorage.getItem("myData");
+  //   const storedData = JSON.parse(storedDataString);
 
-  const [createGroup, setCreateGroup] = React.useState({
-    groupName: storedData ? storedData.groupName : "",
-    color: storedData ? storedData.color : "",
-    create: storedData ? storedData.create : "",
+  // // mapping checking storing data
+  // const groupNamesCheck = storedData.map(group => group.groupName);
+  // const colorCheck = storedData.map(group => group.color);
+  // const createCheck = storedData.map(group => group.create);
+
+  // //   setting stored data in not then default
+  //   const [createGroup, setCreateGroup] = React.useState([{
+  //     groupName: storedData ? groupNamesCheck : "",
+  //     color: storedData ? colorCheck : "",
+  //     create: storedData ? createCheck : "",
+  //   }]);
+
+  // Retrieving data from local storage
+//   const storedDataString = localStorage.getItem("myData");
+//   const storedData = JSON.parse(storedDataString) || [];
+
+  // Setting stored data as default
+  const [createGroup, setCreateGroup] = useState({
+    id: 0,
+    groupName: "",
+    color: "",
+    create: false,
   });
 
   const { groupName, color, create } = createGroup;
+
+  const submitCheck = () => {
+    if (colorChoice === true && groupName !== "") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleClick = (open) => {
     setOpen(open);
   };
@@ -27,20 +56,77 @@ const HomeMainPage = () => {
   };
 
   const handleSubmit = (e) => {
-    setCreateGroup({ ...createGroup, create: true });
-    e.preventDefault();
-    setOpen(false);
+    // e.preventDefault();
+    console.log(submitCheck + "submitCheck");
+    if (submitCheck() === true) {
+      setCreateGroup({ ...createGroup, create: true });
+      setOpen(false);
+    }
+  };
+
+  // color functions+++++++++++++++++++++++++++++++++++++++++++
+
+  const funColor1 = () => {
+    setCreateGroup({ ...createGroup, color: "#B38BFA" });
+    setColorChoice(true);
+  };
+
+  const funColor2 = () => {
+    setCreateGroup({ ...createGroup, color: "#FF79F2" });
+    setColorChoice(true);
+  };
+
+  const funColor3 = () => {
+    setCreateGroup({ ...createGroup, color: "#43E6FC" });
+    setColorChoice(true);
+  };
+
+  const funColor4 = () => {
+    setCreateGroup({ ...createGroup, color: "#F19576" });
+    setColorChoice(true);
+  };
+
+  const funColor5 = () => {
+    setCreateGroup({ ...createGroup, color: "#0047FF" });
+    setColorChoice(true);
+  };
+
+  const funColor6 = () => {
+    setCreateGroup({ ...createGroup, color: "#6691FF" });
+    setColorChoice(true);
   };
 
   return (
     <>
       <div className={StyleHomeMainPage.homeMainPage}>
-        <LeftSidePannel
-          handleClick={handleClick}
-          groupName={groupName}
-          color={color}
-          create={create}
-        />
+        {/* {submitCheck ? (
+          <LeftSidePannel
+            handleClick={handleClick}
+            id={createGroup.id}
+            groupName={groupName}
+            color={color}
+            create={create}
+          />
+        ) : (
+          <LeftSidePannel
+            handleClick={handleClick}
+            //   id={createGroup.id}
+            //   groupName={groupName}
+            //   color={color}
+            //   create={create}
+          />
+        )} */}
+        {submitCheck() ? (
+          <LeftSidePannel
+            handleClick={handleClick}
+            id={createGroup.id}
+            groupName={groupName}
+            color={color}
+            create={create}
+          />
+        ) : (
+          <LeftSidePannel handleClick={handleClick} />
+        )}
         <RightSidePannel />
       </div>
       {/* {console.log(groupName,color)} */}
@@ -74,54 +160,45 @@ const HomeMainPage = () => {
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton1}
-                  onClick={() =>
-                    setCreateGroup({ ...createGroup, color: "#B38BFA" })
-                  }
+                  onClick={funColor1}
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton2}
-                  onClick={() =>
-                    setCreateGroup({ ...createGroup, color: "#FF79F2" })
-                  }
+                  onClick={funColor2}
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton3}
-                  onClick={() =>
-                    setCreateGroup({ ...createGroup, color: "#43E6FC" })
-                  }
+                  onClick={funColor3}
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton4}
-                  onClick={() =>
-                    setCreateGroup({ ...createGroup, color: "#F19576" })
-                  }
+                  onClick={funColor4}
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton5}
-                  onClick={() =>
-                    setCreateGroup({ ...createGroup, color: "#0047FF" })
-                  }
+                  onClick={funColor5}
                 ></button>
                 &nbsp;&nbsp;
                 <button
                   type="button"
                   className={StyleHomeMainPage.colorButton6}
-                  onClick={() =>
-                    setCreateGroup({ ...createGroup, color: "#6691FF" })
-                  }
+                  onClick={funColor6}
                 ></button>
                 &nbsp;&nbsp;
               </span>
             </label>
           </p>
+          {colorChoice === false ? (
+            <p style={{ color: "red" }}>Please Choose The Color!</p>
+          ) : null}
           <input
             type="submit"
             value="Create"

@@ -1,22 +1,67 @@
 import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
 
-const LeftSidePannel = ({ handleClick, groupName, color, create }) => {
-  //   storing data
-  const dataStoreGroupNames = {
-    id: 0,
+const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
+//   //   storing data
+
+//   const dataStoreGroupNames = [
+
+//   ];
+
+//   dataStoreGroupNames.push({
+//     id:id,
+//     groupName: groupName,
+//     color: color,
+//     create: create,
+//   })
+
+// //   const dataStoreGroupNames = [
+// //     {
+// //         id: 0,
+// //         groupName: groupName,
+// //         color: color,
+// //         create: create,
+// //       },
+// //   ];
+
+//   const StringDataStoreGroupNames = JSON.stringify(dataStoreGroupNames);
+//   localStorage.setItem("myData", StringDataStoreGroupNames);
+
+//   const storedDataString = localStorage.getItem("myData");
+//   const storedData = JSON.parse(storedDataString);
+
+  //   {console.log(groupName,color)}
+
+
+
+
+
+
+
+
+  const storedDataString = localStorage.getItem("myData");
+  const storedData = JSON.parse(storedDataString) || [];
+
+  // Create a new data object
+  const newData = {
+    id: id,
     groupName: groupName,
     color: color,
     create: create,
   };
-  const StringDataStoreGroupNames = JSON.stringify(dataStoreGroupNames);
-  localStorage.setItem("myGroupNamesData", StringDataStoreGroupNames);
 
-//   reading data
-  const storedDataString = localStorage.getItem("myGroupNamesData");
-  const storedData = JSON.parse(storedDataString);
+  // Append the new data to the existing array
+  storedData.push(newData);
 
-  //   {console.log(groupName,color)}
+  // Store the updated array back in local storage
+  localStorage.setItem("myData", JSON.stringify(storedData));
+
+
+
+
+
+
+
 
   return (
     <div className={StylesLeftSidePannel.leftSidePannel}>
@@ -32,13 +77,22 @@ const LeftSidePannel = ({ handleClick, groupName, color, create }) => {
         </button>
         <div>
           <br />
-          <div className={StylesLeftSidePannel.notesGroupSlected}>
-            {storedData.create ? (
-              <NotesGroup
-                groupName={storedData.groupName}
-                color={storedData.color}
-              />
-            ) : null}
+          <div style={{
+                    display: "flex",
+                    flexDirection: "column-reverse",
+                    
+                }}>
+            {storedData.map((group) =>
+              group.create ? (
+                <div className={StylesLeftSidePannel.notesGroupSlected}>
+                <NotesGroup
+                  key={group.id}
+                  groupName={group.groupName}
+                  color={group.color}
+                />
+                </div>
+              ) : null
+            )}
           </div>
         </div>
       </div>

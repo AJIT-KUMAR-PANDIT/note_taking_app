@@ -50,6 +50,10 @@
   border: 0px solid #b48bfa00;
 }
 
+.colorButton6:active, .colorButton5:active, .colorButton4:active, .colorButton3:active, .colorButton2:active, .colorButton1:active {
+    border: 3px solid #020202;
+  }
+
 .Choosecolour {
   display: flex;
   justify-content: center;
