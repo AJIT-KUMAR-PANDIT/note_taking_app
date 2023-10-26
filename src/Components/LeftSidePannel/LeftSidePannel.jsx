@@ -1,5 +1,6 @@
 import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
+import React, { useState } from "react";
 
 const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
 //   //   storing data
