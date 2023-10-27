@@ -63,7 +63,7 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
 
 // handling notes section
 
-const handleNotesChange = () => {
+const handleNotesClick = () => {
   
 }
 
@@ -97,7 +97,7 @@ const handleNotesChange = () => {
                   key={group.id}
                   groupName={group.groupName}
                   color={group.color}
-                  onClick={handleNotesChange}
+                  onClick={handleNotesClick}
                 />
                 </div>
               ) : null

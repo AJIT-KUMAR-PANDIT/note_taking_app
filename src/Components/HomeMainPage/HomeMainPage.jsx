@@ -1,5 +1,6 @@
 import LeftSidePannel from "../LeftSidePannel/LeftSidePannel";
 import RightSidePannel from "../RightSidePannel/RightSidePannel";
+import Notes from "../Notes/Notes";
 import StyleHomeMainPage from "./HomeMainPage.module.css";
 import React, { useState } from "react";
 import "react-responsive-modal/styles.css";
@@ -127,7 +128,8 @@ const HomeMainPage = () => {
         ) : (
           <LeftSidePannel handleClick={handleClick} />
         )}
-        <RightSidePannel />
+        {/* <RightSidePannel /> */}
+        <Notes/>
       </div>
       {/* {console.log(groupName,color)} */}
       {/* ?,modal  #################################################################### */}
