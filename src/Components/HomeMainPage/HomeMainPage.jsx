@@ -9,6 +9,11 @@ const HomeMainPage = () => {
   const [open, setOpen] = React.useState(false);
   const [colorChoice, setColorChoice] = React.useState(false);
 
+// reteriving data
+// const storedDataString = localStorage.getItem("myData");
+//   const storedData = JSON.parse(storedDataString) || [];
+
+
   // //   checking stored data
   //   const storedDataString = localStorage.getItem("myData");
   //   const storedData = JSON.parse(storedDataString);
@@ -55,11 +60,24 @@ const HomeMainPage = () => {
     setCreateGroup({ ...createGroup, groupName: e.target.value });
   };
 
+// const idChange = () => {
+//   // storedData.map((group) => {
+//   //  const  a=(group.id)+1
+//   //  return a;
+//   // });
+//   // const updatedData = storedData.map((group) => ({
+//   //   ...group,
+//   //   id: group.id + 1
+//   // }));
+//   // return updatedData;
+// }
+
   const handleSubmit = (e) => {
     // e.preventDefault();
     console.log(submitCheck + "submitCheck");
     if (submitCheck() === true) {
       setCreateGroup({ ...createGroup, create: true });
+      // {console.log(idChange())}
       setOpen(false);
     }
   };

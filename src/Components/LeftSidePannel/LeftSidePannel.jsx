@@ -42,10 +42,13 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
 
   const storedDataString = localStorage.getItem("myData");
   const storedData = JSON.parse(storedDataString) || [];
+// changing id
+  const newId = storedData.length > 0 ? storedData[storedData.length - 1].id + 1 : 1;
+
 
   // Create a new data object
   const newData = {
-    id: id,
+    id: newId,
     groupName: groupName,
     color: color,
     create: create,
