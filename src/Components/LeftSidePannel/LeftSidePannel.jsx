@@ -1,5 +1,6 @@
 import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
+import React,{useEffect} from "react";
 
 const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
 //   //   storing data
@@ -51,10 +52,27 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
   };
 
   // Append the new data to the existing array
-  storedData.push(newData);
 
-  // Store the updated array back in local storage
-  localStorage.setItem("myData", JSON.stringify(storedData));
+  const submitCheck = () => {
+    if (groupName !== "" && create === true) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    if (submitCheck()) {
+      // Append the new data to the existing array
+      storedData.push(newData);
+      
+      // Store the updated array back in local storage
+      localStorage.setItem("myData", JSON.stringify(storedData));
+    }
+  }, [groupName, create, newData]);
+
+
+  
 
 
 

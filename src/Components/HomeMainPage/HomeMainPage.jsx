@@ -40,7 +40,7 @@ const HomeMainPage = () => {
   const { id, groupName, color, create } = createGroup;
 
   const submitCheck = () => {
-    if (colorChoice === true && groupName !== "") {
+    if (colorChoice === true && groupName !== "" ) {
       return true;
     } else {
       return false;
