@@ -1,7 +1,7 @@
 import StyleNotesGroup from "./NotesGroup.module.css";
 import React from "react";
 
-const NotesGroup = ({ groupName, color }) => {
+const NotesGroup = ({ id,groupName, color }) => {
 
     const imageText = groupName.length;
   const NotesImage = {

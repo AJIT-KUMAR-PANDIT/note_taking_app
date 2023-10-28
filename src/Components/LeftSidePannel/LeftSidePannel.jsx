@@ -90,9 +90,11 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
                   groupName={group.groupName}
                   color={group.color}
                 />
+               
                 </div>
               ) : null
-            )}
+            )
+            }
           </div>
         </div>
       </div>

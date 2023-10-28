@@ -37,7 +37,7 @@ const HomeMainPage = () => {
     create: false,
   });
 
-  const { groupName, color, create } = createGroup;
+  const { id, groupName, color, create } = createGroup;
 
   const submitCheck = () => {
     if (colorChoice === true && groupName !== "") {
@@ -119,7 +119,7 @@ const HomeMainPage = () => {
         {submitCheck() ? (
           <LeftSidePannel
             handleClick={handleClick}
-            id={createGroup.id}
+            id={id}
             groupName={groupName}
             color={color}
             create={create}
