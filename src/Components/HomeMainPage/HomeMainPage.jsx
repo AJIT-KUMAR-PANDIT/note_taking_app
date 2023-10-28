@@ -106,8 +106,7 @@ const [dataFromLeftPannel,setDataFromLeftPannel] =useState ({
 });
 
 const handleClickShare = (obj) => {
-  // 👇️ take the parameter passed from the Child component
-  setDataFromLeftPannel(emp => ({...emp, ...obj}));
+  setDataFromLeftPannel(data => ({...data, ...obj}));
 
   console.log('argument from Child: ', obj);
 };
