@@ -1,6 +1,5 @@
 import LeftSidePannel from "../LeftSidePannel/LeftSidePannel";
 import RightSidePannel from "../RightSidePannel/RightSidePannel";
-import Notes from "../Notes/Notes";
 import StyleHomeMainPage from "./HomeMainPage.module.css";
 import React, { useState } from "react";
 import "react-responsive-modal/styles.css";
@@ -27,8 +26,8 @@ const HomeMainPage = () => {
   //   }]);
 
   // Retrieving data from local storage
-  //   const storedDataString = localStorage.getItem("myData");
-  //   const storedData = JSON.parse(storedDataString) || [];
+//   const storedDataString = localStorage.getItem("myData");
+//   const storedData = JSON.parse(storedDataString) || [];
 
   // Setting stored data as default
   const [createGroup, setCreateGroup] = useState({
@@ -57,7 +56,7 @@ const HomeMainPage = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(submitCheck + "submitCheck");
     if (submitCheck() === true) {
       setCreateGroup({ ...createGroup, create: true });
@@ -97,22 +96,6 @@ const HomeMainPage = () => {
     setColorChoice(true);
   };
 
-
-// ?????????????????
-const [dataFromLeftPannel,setDataFromLeftPannel] =useState ({
-  groupid: 0,
-  groupGroupname: "",
-  groupColor: "",
-});
-
-const handleClickShare = (obj) => {
-  setDataFromLeftPannel(data => ({...data, ...obj}));
-
-  console.log('argument from Child: ', obj);
-};
-
-
-
   return (
     <>
       <div className={StyleHomeMainPage.homeMainPage}>
@@ -136,22 +119,15 @@ const handleClickShare = (obj) => {
         {submitCheck() ? (
           <LeftSidePannel
             handleClick={handleClick}
-            handleClickShare={handleClickShare}
             id={createGroup.id}
             groupName={groupName}
             color={color}
             create={create}
-            
           />
         ) : (
-          <LeftSidePannel handleClick={handleClick} handleClickShare={handleClickShare} />
+          <LeftSidePannel handleClick={handleClick} />
         )}
-
-        
-            <Notes/>
-            {console.log(dataFromLeftPannel.id)}
-           {/* <RightSidePannel /> */}
-        
+        <RightSidePannel />
       </div>
       {/* {console.log(groupName,color)} */}
       {/* ?,modal  #################################################################### */}
