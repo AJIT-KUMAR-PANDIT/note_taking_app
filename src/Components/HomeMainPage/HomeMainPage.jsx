@@ -1,14 +1,57 @@
 import LeftSidePannel from "../LeftSidePannel/LeftSidePannel";
 import RightSidePannel from "../RightSidePannel/RightSidePannel";
 import StyleHomeMainPage from "./HomeMainPage.module.css";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import Notes from "../Notes/Notes";
 
 const HomeMainPage = () => {
   const [open, setOpen] = React.useState(false);
   const [colorChoice, setColorChoice] = React.useState(false);
+// checking is user clicked which group
 
+
+const [userIdClicked, setUserIdClicked] = useState('');
+
+  // Use the useEffect hook to retrieve the data from localStorage
+  
+  useEffect(() => {
+    // Retrieve the data from localStorage
+    const storedUserIdClicked = localStorage.getItem('userIdClicked');
+
+    // Check if the data exists and set it in the state
+    if (storedUserIdClicked) {
+      setUserIdClicked(storedUserIdClicked);
+    }
+  }, [ ]);
+
+
+
+
+
+  
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+console.log(userIdClicked+"kjk");
 // reteriving data
 // const storedDataString = localStorage.getItem("myData");
 //   const storedData = JSON.parse(storedDataString) || [];
@@ -145,7 +188,14 @@ const HomeMainPage = () => {
         ) : (
           <LeftSidePannel handleClick={handleClick} />
         )}
-        <RightSidePannel />
+        {
+          (userIdClicked>0) ? (
+            <Notes/>
+          ):(
+            <RightSidePannel />
+          )
+        }
+       
       </div>
       {/* {console.log(groupName,color)} */}
       {/* ?,modal  #################################################################### */}

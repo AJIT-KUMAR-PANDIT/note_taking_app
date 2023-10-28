@@ -1,50 +1,43 @@
 import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 
 const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
-//   //   storing data
+  //   //   storing data
 
-//   const dataStoreGroupNames = [
+  //   const dataStoreGroupNames = [
 
-//   ];
+  //   ];
 
-//   dataStoreGroupNames.push({
-//     id:id,
-//     groupName: groupName,
-//     color: color,
-//     create: create,
-//   })
+  //   dataStoreGroupNames.push({
+  //     id:id,
+  //     groupName: groupName,
+  //     color: color,
+  //     create: create,
+  //   })
 
-// //   const dataStoreGroupNames = [
-// //     {
-// //         id: 0,
-// //         groupName: groupName,
-// //         color: color,
-// //         create: create,
-// //       },
-// //   ];
+  // //   const dataStoreGroupNames = [
+  // //     {
+  // //         id: 0,
+  // //         groupName: groupName,
+  // //         color: color,
+  // //         create: create,
+  // //       },
+  // //   ];
 
-//   const StringDataStoreGroupNames = JSON.stringify(dataStoreGroupNames);
-//   localStorage.setItem("myData", StringDataStoreGroupNames);
+  //   const StringDataStoreGroupNames = JSON.stringify(dataStoreGroupNames);
+  //   localStorage.setItem("myData", StringDataStoreGroupNames);
 
-//   const storedDataString = localStorage.getItem("myData");
-//   const storedData = JSON.parse(storedDataString);
+  //   const storedDataString = localStorage.getItem("myData");
+  //   const storedData = JSON.parse(storedDataString);
 
   //   {console.log(groupName,color)}
 
-
-
-
-
-
-
-
   const storedDataString = localStorage.getItem("myData");
   const storedData = JSON.parse(storedDataString) || [];
-// changing id
-  const newId = storedData.length > 0 ? storedData[storedData.length - 1].id + 1 : 1;
-
+  // changing id
+  const newId =
+    storedData.length > 0 ? storedData[storedData.length - 1].id + 1 : 1;
 
   // Create a new data object
   const newData = {
@@ -68,19 +61,17 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
     if (submitCheck()) {
       // Append the new data to the existing array
       storedData.push(newData);
-      
+
       // Store the updated array back in local storage
       localStorage.setItem("myData", JSON.stringify(storedData));
     }
   }, [groupName, create, newData]);
 
 
-  
 
-
-
-
-
+  window.addEventListener('beforeunload', () => {
+    localStorage.setItem("userIdClicked", 0);
+    });
 
 
 
@@ -98,24 +89,36 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
         </button>
         <div>
           <br />
-          <div style={{
-                    display: "flex",
-                    flexDirection: "column-reverse",
-                    
-                }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column-reverse",
+            }}
+          >
             {storedData.map((group) =>
               group.create ? (
                 <div className={StylesLeftSidePannel.notesGroupSlected}>
-                <NotesGroup
-                  key={group.id}
-                  groupName={group.groupName}
-                  color={group.color}
-                />
-               
+                  <span
+                    onClick={() => {
+                      localStorage.setItem("userIdClicked", group.id);
+                    }}
+                    style={{
+                      minWidth: "100%",
+                      minHeight: "61px",
+                      // border: "1px solid black",
+                      display: "flex",
+                      justifyContent: "flex-start",
+                    }}
+                  >
+                    <NotesGroup
+                      key={group.id}
+                      groupName={group.groupName}
+                      color={group.color}
+                   />
+                  </span>
                 </div>
               ) : null
-            )
-            }
+            )}
           </div>
         </div>
       </div>
