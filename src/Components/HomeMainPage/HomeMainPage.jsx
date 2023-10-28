@@ -27,8 +27,8 @@ const HomeMainPage = () => {
   //   }]);
 
   // Retrieving data from local storage
-//   const storedDataString = localStorage.getItem("myData");
-//   const storedData = JSON.parse(storedDataString) || [];
+  //   const storedDataString = localStorage.getItem("myData");
+  //   const storedData = JSON.parse(storedDataString) || [];
 
   // Setting stored data as default
   const [createGroup, setCreateGroup] = useState({
@@ -57,7 +57,7 @@ const HomeMainPage = () => {
   };
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(submitCheck + "submitCheck");
     if (submitCheck() === true) {
       setCreateGroup({ ...createGroup, create: true });
@@ -97,6 +97,23 @@ const HomeMainPage = () => {
     setColorChoice(true);
   };
 
+
+// ?????????????????
+const [dataFromLeftPannel,setDataFromLeftPannel] =useState ({
+  groupid: 0,
+  groupGroupname: "",
+  groupColor: "",
+});
+
+const handleClickShare = (obj) => {
+  // 👇️ take the parameter passed from the Child component
+  setDataFromLeftPannel(emp => ({...emp, ...obj}));
+
+  console.log('argument from Child: ', obj);
+};
+
+
+
   return (
     <>
       <div className={StyleHomeMainPage.homeMainPage}>
@@ -120,16 +137,22 @@ const HomeMainPage = () => {
         {submitCheck() ? (
           <LeftSidePannel
             handleClick={handleClick}
+            handleClickShare={handleClickShare}
             id={createGroup.id}
             groupName={groupName}
             color={color}
             create={create}
+            
           />
         ) : (
-          <LeftSidePannel handleClick={handleClick} />
+          <LeftSidePannel handleClick={handleClick} handleClickShare={handleClickShare} />
         )}
-        {/* <RightSidePannel /> */}
-        <Notes/>
+
+        
+            <Notes/>
+            {console.log(dataFromLeftPannel.id)}
+           {/* <RightSidePannel /> */}
+        
       </div>
       {/* {console.log(groupName,color)} */}
       {/* ?,modal  #################################################################### */}
