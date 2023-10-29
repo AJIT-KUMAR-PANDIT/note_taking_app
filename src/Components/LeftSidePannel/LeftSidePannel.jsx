@@ -1,3 +1,4 @@
+import { writeStorage } from '@rehooks/local-storage';
 import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
 import React, { useEffect } from "react";
@@ -26,14 +27,14 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
   // //   ];
 
   //   const StringDataStoreGroupNames = JSON.stringify(dataStoreGroupNames);
-  //   localStorage.setItem("myData", StringDataStoreGroupNames);
+  //   localStorage.setItem("notesData", StringDataStoreGroupNames);
 
-  //   const storedDataString = localStorage.getItem("myData");
+  //   const storedDataString = localStorage.getItem("notesData");
   //   const storedData = JSON.parse(storedDataString);
 
   //   {console.log(groupName,color)}
 
-  const storedDataString = localStorage.getItem("myData");
+  const storedDataString = localStorage.getItem("notesData");
   const storedData = JSON.parse(storedDataString) || [];
   // changing id
   const newId =
@@ -63,15 +64,15 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
       storedData.push(newData);
 
       // Store the updated array back in local storage
-      localStorage.setItem("myData", JSON.stringify(storedData));
+      localStorage.setItem("notesData", JSON.stringify(storedData));
     }
   }, [groupName, create, newData]);
 
 
 
-  window.addEventListener('beforeunload', () => {
-    localStorage.setItem("userIdClicked", 0);
-    });
+  // window.addEventListener('beforeunload', () => {
+  //   localStorage.setItem("userIdClicked", 0);
+  //   });
 
 
 
@@ -99,9 +100,10 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
               group.create ? (
                 <div className={StylesLeftSidePannel.notesGroupSlected}>
                   <span
-                    onClick={() => {
-                      localStorage.setItem("userIdClicked", group.id);
-                    }}
+                    // onClick={() => {
+                    //   localStorage.setItem("userIdClicked", group.id);
+                    // }}
+                    onClick={_ => writeStorage('userIdClicked', group.id)}
                     style={{
                       minWidth: "100%",
                       minHeight: "61px",

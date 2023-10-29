@@ -1,6 +1,7 @@
 import LeftSidePannel from "../LeftSidePannel/LeftSidePannel";
 import RightSidePannel from "../RightSidePannel/RightSidePannel";
 import StyleHomeMainPage from "./HomeMainPage.module.css";
+import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
 import React, { useState,useEffect } from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
@@ -12,25 +13,27 @@ const HomeMainPage = () => {
 // checking is user clicked which group
 
 
-const [userIdClicked, setUserIdClicked] = useState('');
+// const [userIdClicked, setUserIdClicked] = useState('');
 
-  // Use the useEffect hook to retrieve the data from localStorage
+//   // Use the useEffect hook to retrieve the data from localStorage
   
+//   useEffect(() => {
+//     // Retrieve the data from localStorage
+//     const storedUserIdClicked = localStorage.getItem('userIdClicked');
+
+//     // Check if the data exists and set it in the state
+//     if (storedUserIdClicked) {
+//       setUserIdClicked(storedUserIdClicked);
+//     }
+//   }, [ ]);
+
+
+  const [userIdClicked] = useLocalStorage('userIdClicked');
+
+
   useEffect(() => {
-    // Retrieve the data from localStorage
-    const storedUserIdClicked = localStorage.getItem('userIdClicked');
-
-    // Check if the data exists and set it in the state
-    if (storedUserIdClicked) {
-      setUserIdClicked(storedUserIdClicked);
-    }
-  }, [ ]);
-
-
-
-
-
-  
+    writeStorage('userIdClicked', 0)
+  },[]);
   
 
 
@@ -53,12 +56,12 @@ const [userIdClicked, setUserIdClicked] = useState('');
 
 console.log(userIdClicked+"kjk");
 // reteriving data
-// const storedDataString = localStorage.getItem("myData");
+// const storedDataString = localStorage.getItem("notesData");
 //   const storedData = JSON.parse(storedDataString) || [];
 
 
   // //   checking stored data
-  //   const storedDataString = localStorage.getItem("myData");
+  //   const storedDataString = localStorage.getItem("notesData");
   //   const storedData = JSON.parse(storedDataString);
 
   // // mapping checking storing data
@@ -74,7 +77,7 @@ console.log(userIdClicked+"kjk");
   //   }]);
 
   // Retrieving data from local storage
-//   const storedDataString = localStorage.getItem("myData");
+//   const storedDataString = localStorage.getItem("notesData");
 //   const storedData = JSON.parse(storedDataString) || [];
 
   // Setting stored data as default
