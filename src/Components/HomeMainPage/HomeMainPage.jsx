@@ -254,7 +254,7 @@ console.log(userIdClicked+"kjk");
       {/* ?,modal  #################################################################### */}
       <Modal
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={() => {setOpen(false);window.location.reload()}}
         closeOnOverlayClick={true}
         center={true}
         showCloseIcon={false}
