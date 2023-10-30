@@ -162,7 +162,7 @@ console.log(userIdClicked+"kjk");
 
   return (
     <>
-      <div className={StyleHomeMainPage.homeMainPage}>
+  <div className={StyleHomeMainPage.homeMainPage}>
         {/* {submitCheck ? (
           <LeftSidePannel
             handleClick={handleClick}
@@ -181,6 +181,7 @@ console.log(userIdClicked+"kjk");
           />
         )} */}
         {submitCheck() ? (
+          <div className={StyleHomeMainPage.hideWhenMobile}>
           <LeftSidePannel
             handleClick={handleClick}
             id={id}
@@ -188,17 +189,59 @@ console.log(userIdClicked+"kjk");
             color={color}
             create={create}
           />
+          </div>
         ) : (
+          <div className={StyleHomeMainPage.hideWhenMobile}>
           <LeftSidePannel handleClick={handleClick} />
+          </div>
         )}
         {
           (userIdClicked>0) ? (
+            <div className={StyleHomeMainPage.hideWhenMobile}>
             <Notes/>
+            </div>
           ):(
+            <div className={StyleHomeMainPage.hideWhenMobile}>
             <RightSidePannel />
+          </div>
           )
         }
        
+       {submitCheck() ? (
+        <div className={StyleHomeMainPage.hideWhenPc}>
+          <LeftSidePannel
+            handleClick={handleClick}
+            id={id}
+            groupName={groupName}
+            color={color}
+            create={create}
+            
+          />
+          </div>
+        ) : (
+          <div className={StyleHomeMainPage.hideWhenPc}>
+          <LeftSidePannel handleClick={handleClick} /></div>
+        )}
+        {
+          (userIdClicked>0) ? (
+            <div className={StyleHomeMainPage.hideWhenPc}>
+            <Notes className={StyleHomeMainPage.hideWhenPc}/>
+            </div>
+          ):(
+            <div className={StyleHomeMainPage.hideWhenPc}>
+            <RightSidePannel className={StyleHomeMainPage.hideWhenPc}/>
+            </div>
+          )
+        }
+
+
+
+       
+
+
+
+
+
       </div>
       {/* {console.log(groupName,color)} */}
       {/* ?,modal  #################################################################### */}

@@ -2,6 +2,22 @@
   display: flex;
 }
 
+/* .hideWhenMobile{
+  display: yes;
+} */
+
+@media (max-width: 599px) {
+  .hideWhenMobile {
+    display: none;
+  }
+}
+
+@media (min-width: 600px) {
+  .hideWhenPc{
+    display: none;
+  }
+}
+
 .colorButton1 {
   border-radius: 50%;
   min-width: 29px;
