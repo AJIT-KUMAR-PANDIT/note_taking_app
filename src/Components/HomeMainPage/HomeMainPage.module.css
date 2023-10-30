@@ -6,13 +6,13 @@
   display: yes;
 } */
 
-@media (max-width: 897px) {
+@media (max-width: 600px) {
   .hideWhenMobile {
     display: none;
   }
 }
 
-@media (min-width: 897px) {
+@media (min-width: 600px) {
   .hideWhenPc{
     display: none;
   }
@@ -78,7 +78,7 @@
   /* width: 11px; */
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .ChoosecolourBreak::before {
     content: "\a";
     white-space: pre;

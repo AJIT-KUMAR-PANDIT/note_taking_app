@@ -87,7 +87,7 @@ body{
     bottom: 16%;
   }
 
-  @media (max-width: 897px) {
+  @media (max-width: 600px) {
     .NotesGroupHeading, .NotesContent, .NotesEnter {
       width: 100%;
     }
