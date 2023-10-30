@@ -235,9 +235,17 @@ console.log(userIdClicked+"kjk");
             <Notes/>
             </div>
           ):(
-            <div className={StyleHomeMainPage.hideWhenPc}>
-            <RightSidePannel/>
-            </div>
+            open > 0 && (
+              <div className={StyleHomeMainPage.hideWhenPc}>
+                <LeftSidePannel
+                  handleClick={handleClick}
+                  id={id}
+                  groupName={groupName}
+                  color={color}
+                  create={create}
+                />
+              </div>
+            )
           )
         }
 
