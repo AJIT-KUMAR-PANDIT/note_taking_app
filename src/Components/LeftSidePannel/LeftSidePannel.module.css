@@ -60,7 +60,7 @@
   align-items: center;
 }
 /* media query mobile view */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .leftSidePannel {
     width: 100vw;
     height: 100vh;
