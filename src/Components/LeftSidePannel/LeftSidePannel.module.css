@@ -1,7 +1,7 @@
 .leftSidePannel {
   background: #fff;
   width: 23vw;
-  height: 93vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 1.5% 1.5% 1.5% 1.5%;
@@ -60,7 +60,7 @@
   align-items: center;
 }
 /* media query mobile view */
-@media (max-width: 600px) {
+@media (max-width: 897px) {
   .leftSidePannel {
     width: 100vw;
     height: 100vh;

@@ -10,6 +10,7 @@ import Notes from "../Notes/Notes";
 const HomeMainPage = () => {
   const [open, setOpen] = React.useState(false);
   const [colorChoice, setColorChoice] = React.useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 // checking is user clicked which group
 
 
@@ -206,8 +207,8 @@ console.log(userIdClicked+"kjk");
           </div>
           )
         }
-       
-       {submitCheck() ? (
+      {/* mobile version  */}
+       { submitCheck() && isVisible ? (
         <div className={StyleHomeMainPage.hideWhenPc}>
           <LeftSidePannel
             handleClick={handleClick}
@@ -215,21 +216,27 @@ console.log(userIdClicked+"kjk");
             groupName={groupName}
             color={color}
             create={create}
-            
+           
           />
           </div>
         ) : (
-          <div className={StyleHomeMainPage.hideWhenPc}>
-          <LeftSidePannel handleClick={handleClick} /></div>
-        )}
+          (isVisible) ?(
+          <div className={StyleHomeMainPage.hideWhenPc} onClick={()=>setIsVisible(false)}>
+          <LeftSidePannel handleClick={handleClick}/>
+          {console.log(isVisible)}
+          </div>
+          )
+        :(null)
+        )
+        }
         {
           (userIdClicked>0) ? (
             <div className={StyleHomeMainPage.hideWhenPc}>
-            <Notes className={StyleHomeMainPage.hideWhenPc}/>
+            <Notes/>
             </div>
           ):(
             <div className={StyleHomeMainPage.hideWhenPc}>
-            <RightSidePannel className={StyleHomeMainPage.hideWhenPc}/>
+            <RightSidePannel/>
             </div>
           )
         }

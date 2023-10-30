@@ -1,8 +1,7 @@
-/* @media (max-width: 600px) {
-    .NotesGroupNotes{
-        display: none;
-    }
-} */
+
+body{
+        background-color: #f7ecdc;
+}
 
 .NotesName{
     color: #000;
@@ -20,7 +19,7 @@
 
 .NotesGroupHeading {
     background: #e8e8e8;
-    width: 74.1vw;
+    width: 77vw;
     height: 77px;
 
     display: flex;
@@ -32,7 +31,7 @@
   .NotesContent {
     border-radius: 0rem 0rem 0rem 0.9375rem;
     background: #f7ecdc;
-    width: 64.1vw;
+    width: 67vw;
     height: 63vh;
     overflow-y: scroll;
     padding-top: 3%;
@@ -55,7 +54,7 @@
     
     position: fixed;
     bottom: 0px;
-    width: 74.1vw;
+    width: 77vw;
   }
   
   .NotesInput {
@@ -86,4 +85,18 @@
     position: absolute;
     right: 3%;
     bottom: 16%;
+  }
+
+  @media (max-width: 897px) {
+    .NotesGroupHeading, .NotesContent, .NotesEnter {
+      width: 100%;
+    }
+
+
+    .NotesInput {
+      max-width: 95vw;
+      min-width: 95vw;
+    }
+
+
   }

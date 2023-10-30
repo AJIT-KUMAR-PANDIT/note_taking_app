@@ -6,13 +6,13 @@
   display: yes;
 } */
 
-@media (max-width: 599px) {
+@media (max-width: 897px) {
   .hideWhenMobile {
     display: none;
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 897px) {
   .hideWhenPc{
     display: none;
   }
