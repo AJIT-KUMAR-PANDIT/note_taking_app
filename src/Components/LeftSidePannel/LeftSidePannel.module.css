@@ -1,7 +1,7 @@
 .leftSidePannel {
   background: #fff;
   width: 23vw;
-  height: 100vh;
+  height: 98.3vh;
   display: flex;
   flex-direction: column;
   padding: 1.5% 1.5% 1.5% 1.5%;
@@ -43,7 +43,7 @@
   display: flex;
   justify-self: start;
 }
-
+/* 
 .notesGroupSlected:active {
   border-radius: 2rem 0rem 0rem 2rem;
   background: #f7ecdc;
@@ -54,11 +54,22 @@
   flex-shrink: 0;
 
   /* ?center */
-  display: flex;
-  justify-self: start;
+  /* display: flex;
+  justify-self: start; */
   /* justify-content: center; */
-  align-items: center;
-}
+  /* align-items: center; */
+/* } */
+ 
+
+
+/* .act{
+  min-width: "100%";
+  min-height: "61px";
+  border: 1px solid black;
+  display: flex;
+  justify-content: flex-start;
+                      
+} */
 /* media query mobile view */
 @media (max-width: 600px) {
   .leftSidePannel {

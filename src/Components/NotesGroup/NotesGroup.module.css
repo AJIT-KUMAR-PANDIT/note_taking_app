@@ -3,6 +3,8 @@
     /* center */
     justify-content: center;
     align-items: center;
+    width: "31vw";
+      padding: 5% 0.9% 4% 5%;
 }
 
 .NotesName{

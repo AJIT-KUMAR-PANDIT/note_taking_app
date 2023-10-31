@@ -1,7 +1,7 @@
 import StyleNotesGroup from "./NotesGroup.module.css";
 import React from "react";
 
-const NotesGroup = ({ id,groupName, color }) => {
+const NotesGroup = ({ id,groupName, color,buttonColorId }) => {
 
     const imageText = groupName.length;
   const NotesImage = {
@@ -30,7 +30,9 @@ const NotesGroup = ({ id,groupName, color }) => {
 
   return (
     <>
-      <div className={StyleNotesGroup.NotesGroup}>
+    {
+(buttonColorId===id)?(
+<div className={StyleNotesGroup.NotesGroup} style={{backgroundColor: "#F7ECDC"}}>
         <div style={NotesImage}>
           {
           
@@ -41,6 +43,22 @@ const NotesGroup = ({ id,groupName, color }) => {
         </div>
         <div className={StyleNotesGroup.NotesName}>{groupName}</div>
       </div>
+):(
+  <div className={StyleNotesGroup.NotesGroup} >
+        <div style={NotesImage}>
+          {
+          
+           groupName[0]}
+          { groupName[imageText-1]
+          
+          }
+        </div>
+        <div className={StyleNotesGroup.NotesName}>{groupName}</div>
+      </div>
+)
+
+    }
+      
     </>
   );
 };

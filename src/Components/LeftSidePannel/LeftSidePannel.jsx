@@ -1,9 +1,10 @@
-import { writeStorage } from '@rehooks/local-storage';
+import { writeStorage, useLocalStorage } from "@rehooks/local-storage";
 import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
+  const [clickedButton, setClickedButton] = useState(null);
   //   //   storing data
 
   //   const dataStoreGroupNames = [
@@ -47,7 +48,7 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
     color: color,
     create: create,
   };
-
+  const [userIdClicked] = useLocalStorage("userIdClicked");
   // Append the new data to the existing array
 
   const submitCheck = () => {
@@ -60,21 +61,33 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
 
   useEffect(() => {
     if (submitCheck()) {
-      // Append the new data to the existing array
       storedData.push(newData);
-
-      // Store the updated array back in local storage
       localStorage.setItem("notesData", JSON.stringify(storedData));
     }
   }, [groupName, create, newData]);
-
-
 
   // window.addEventListener('beforeunload', () => {
   //   localStorage.setItem("userIdClicked", 0);
   //   });
 
+  const handleButtonClick = (buttonId) => {
+    setClickedButton(buttonId);
+  };
 
+  const buttonStyle = (buttonId) => {
+    return {
+      backgroundColor: clickedButton === buttonId ? "#F7ECDC" : "transparent",
+      color: "white",
+      minWidth: "100%",
+      minHeight: "61px",
+      // border: "1px solid black",
+      display: "flex",
+      justifyContent: "flex-start",
+      borderRadius: "2rem 0rem 0rem 2rem",
+      // width: "31vw",
+      // padding: "4% 0.9% 4% 5%",
+    };
+  };
 
   return (
     <div className={StylesLeftSidePannel.leftSidePannel}>
@@ -99,24 +112,24 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
             {storedData.map((group) =>
               group.create ? (
                 <div className={StylesLeftSidePannel.notesGroupSlected}>
+                  
                   <span
                     // onClick={() => {
                     //   localStorage.setItem("userIdClicked", group.id);
                     // }}
-                    onClick={_ => writeStorage('userIdClicked', group.id)}
-                    style={{
-                      minWidth: "100%",
-                      minHeight: "61px",
-                      // border: "1px solid black",
-                      display: "flex",
-                      justifyContent: "flex-start",
+                    className={StylesLeftSidePannel.act}
+                    style={buttonStyle(group.id)}
+                    onClick={(_) => {
+                      writeStorage("userIdClicked", group.id);
+                      handleButtonClick(group.id);
                     }}
                   >
                     <NotesGroup
                       key={group.id}
                       groupName={group.groupName}
                       color={group.color}
-                   />
+                      buttonColorId={userIdClicked}
+                    />
                   </span>
                 </div>
               ) : null
