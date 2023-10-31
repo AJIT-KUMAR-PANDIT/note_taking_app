@@ -3,6 +3,7 @@ import StyleNotes from "./Notes.module.css";
 import { useState, useEffect } from "react";
 
 const Notes = () => {
+  const [saveNotes, setSaveNotes] = useState(false);
   const [displayingNotes, setDisplayingNotes] = useState({
     id: 0,
     notes: "",
@@ -83,8 +84,11 @@ const Notes = () => {
       time: NoteTimeWithoutSeconds,
       date: notesDate,
     });
+    setSaveNotes(true);
   };
-
+  const resetTextarea = () => {
+    setMyNotes({ ...myNotes, notes: '' }); 
+  };
   const saveMyNotes = () => {
     const existingNotesData = localStorage.getItem("myNotesSave");
     let existingNotes = JSON.parse(existingNotesData) || [];
@@ -93,6 +97,7 @@ const Notes = () => {
       existingNotes.push(myNotes);
       localStorage.setItem("myNotesSave", JSON.stringify(existingNotes));
     }
+    resetTextarea();
   };
 
   const reterivingMyNotes = () => {
@@ -121,7 +126,12 @@ const Notes = () => {
     }
   };
   
-
+  const handleKEnterKey = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault(); 
+      saveMyNotes();
+    }
+  };
 
 
   return (
@@ -146,6 +156,8 @@ const Notes = () => {
               placeholder="Enter your text here..........."
               className={StyleNotes.NotesInput}
               onChange={(e) => myNotesFunction(e)}
+              value={myNotes.notes}
+              onKeyPress={handleKEnterKey}
             />
             <img
               src="assets/EnterArrow.svg"
