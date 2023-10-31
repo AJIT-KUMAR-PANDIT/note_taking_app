@@ -97,22 +97,29 @@ const Notes = () => {
 
   const reterivingMyNotes = () => {
     const existingNotesData = localStorage.getItem("myNotesSave");
-
+  
     if (existingNotesData) {
       const existingNotes = JSON.parse(existingNotesData);
-      for (const note of existingNotes) {
-        console.log(note.id + "= my notes");
-        console.log(note.notes + "= notes");
-        <div></div>
-      }
-
-      console.log(existingNotes.id + "_________");
+  
+      return( existingNotes.map((note, index) => (
+       (userIdClicked === note.id) ?(
+        <div style={{ display: "flex" }} key={index}>
+          <div>
+            <div>{note.time}</div>
+            <div>{note.date}</div>
+          </div>
+         <div style={{width: "10vw", display: "flex",flexWrap: "wrap"}}> {note.notes}</div>
+        </div>
+      ):(
+        null
+      ))));
     } else {
       console.log("Data not found in localStorage");
     }
   };
+  
 
-  reterivingMyNotes();
+
 
   return (
     <>
@@ -128,7 +135,7 @@ const Notes = () => {
           </div>
           {/* <br/><br/><br/><br/> */}
           <div className={StyleNotes.NotesContent}>
-            
+            {  reterivingMyNotes()}
           </div>
           <div className={StyleNotes.NotesEnter}>
             <textarea
