@@ -103,12 +103,15 @@ const Notes = () => {
   
       return( existingNotes.map((note, index) => (
        (userIdClicked === note.id) ?(
-        <div style={{ display: "flex" }} key={index}>
+        <div style={{ display: "flex" , justifyContent: "space-between",marginBottom: "21px"}} key={index}>
           <div>
-            <div>{note.time}</div>
-            <div>{note.date}</div>
+            <div>
+            <div className={StyleNotes.time}>{note.time}</div>
+            <div className={StyleNotes.date}>{note.date}</div>
+            </div>
           </div>
-         <div style={{width: "10vw", display: "flex",flexWrap: "wrap"}}> {note.notes}</div>
+         <div className={StyleNotes.notes} style={{width: "50vw",contentWrap: "break-word"}}> {note.notes}</div>
+         <br/><br/><br/>
         </div>
       ):(
         null
