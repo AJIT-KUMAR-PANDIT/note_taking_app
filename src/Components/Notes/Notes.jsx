@@ -129,7 +129,7 @@ const Notes = () => {
       {userIdClicked > 0 ? (
         <div className={StyleNotes.NotesGroupNotes}>
           <div className={StyleNotes.NotesGroupHeading}>
-            &nbsp; &nbsp; &nbsp;
+            &nbsp; &nbsp; &nbsp;<span className={StyleNotes.backButton} onClick={() => window.location.reload()}><img src="assets/BackButton.svg" alt="BackButton" /> &nbsp;</span>
             <div style={NotesImage}>
               {groupName[0]}
               {groupName[imageText - 1]}
