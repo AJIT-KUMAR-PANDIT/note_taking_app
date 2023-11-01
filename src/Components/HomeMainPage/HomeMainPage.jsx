@@ -11,6 +11,7 @@ const HomeMainPage = () => {
   const [open, setOpen] = React.useState(false);
   const [colorChoice, setColorChoice] = React.useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [colorgroupChoice,setColorgroupChoice]=useState(false);
 // checking is user clicked which group
 
 
@@ -105,6 +106,7 @@ console.log(userIdClicked+"kjk");
 
   const handleNotesChange = (e) => {
     setCreateGroup({ ...createGroup, groupName: e.target.value });
+    setColorgroupChoice(true);
   };
 
 // const idChange = () => {
@@ -279,6 +281,9 @@ console.log(userIdClicked+"kjk");
                 className={StyleHomeMainPage.placeHold}
                 onChange={(e) => handleNotesChange(e)}
               />
+              {colorgroupChoice === false && groupName === "" ? (
+            <p style={{ color: "red" }}>Please Enter Group Name!</p>
+          ) : null}
             </label>
           </p>
           <p className={StyleHomeMainPage.Choosecolour}>
