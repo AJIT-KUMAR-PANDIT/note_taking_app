@@ -1,87 +1,26 @@
 import LeftSidePannel from "../LeftSidePannel/LeftSidePannel";
 import RightSidePannel from "../RightSidePannel/RightSidePannel";
 import StyleHomeMainPage from "./HomeMainPage.module.css";
-import { useLocalStorage, writeStorage } from '@rehooks/local-storage';
-import React, { useState,useEffect } from "react";
+import React, { useState} from "react";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import Notes from "../Notes/Notes";
+
+
 
 const HomeMainPage = () => {
   const [open, setOpen] = React.useState(false);
   const [colorChoice, setColorChoice] = React.useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [colorgroupChoice,setColorgroupChoice]=useState(false);
-// checking is user clicked which group
-
-
-// const [userIdClicked, setUserIdClicked] = useState('');
-
-//   // Use the useEffect hook to retrieve the data from localStorage
-  
-//   useEffect(() => {
-//     // Retrieve the data from localStorage
-//     const storedUserIdClicked = localStorage.getItem('userIdClicked');
-
-//     // Check if the data exists and set it in the state
-//     if (storedUserIdClicked) {
-//       setUserIdClicked(storedUserIdClicked);
-//     }
-//   }, [ ]);
-
-
-  const [userIdClicked] = useLocalStorage('userIdClicked');
-
-
-  useEffect(() => {
-    writeStorage('userIdClicked', 0)
-  },[]);
-  
-
 
   
+const [userIdClicked,setUserIdClicked] = useState(0);
 
-
-
-
-
-
-
-
-
-
-
-
-
+const handleUserIdClicked = IDnum => {
+  setUserIdClicked(IDnum);
+};
   
-
-
-console.log(userIdClicked+"kjk");
-// reteriving data
-// const storedDataString = localStorage.getItem("notesData");
-//   const storedData = JSON.parse(storedDataString) || [];
-
-
-  // //   checking stored data
-  //   const storedDataString = localStorage.getItem("notesData");
-  //   const storedData = JSON.parse(storedDataString);
-
-  // // mapping checking storing data
-  // const groupNamesCheck = storedData.map(group => group.groupName);
-  // const colorCheck = storedData.map(group => group.color);
-  // const createCheck = storedData.map(group => group.create);
-
-  // //   setting stored data in not then default
-  //   const [createGroup, setCreateGroup] = React.useState([{
-  //     groupName: storedData ? groupNamesCheck : "",
-  //     color: storedData ? colorCheck : "",
-  //     create: storedData ? createCheck : "",
-  //   }]);
-
-  // Retrieving data from local storage
-//   const storedDataString = localStorage.getItem("notesData");
-//   const storedData = JSON.parse(storedDataString) || [];
-
   // Setting stored data as default
   const [createGroup, setCreateGroup] = useState({
     id: 0,
@@ -108,18 +47,6 @@ console.log(userIdClicked+"kjk");
     setCreateGroup({ ...createGroup, groupName: e.target.value });
     setColorgroupChoice(true);
   };
-
-// const idChange = () => {
-//   // storedData.map((group) => {
-//   //  const  a=(group.id)+1
-//   //  return a;
-//   // });
-//   // const updatedData = storedData.map((group) => ({
-//   //   ...group,
-//   //   id: group.id + 1
-//   // }));
-//   // return updatedData;
-// }
 
   const handleSubmit = (e) => {
     // e.preventDefault();
@@ -166,27 +93,12 @@ console.log(userIdClicked+"kjk");
   return (
     <>
   <div className={StyleHomeMainPage.homeMainPage}>
-        {/* {submitCheck ? (
-          <LeftSidePannel
-            handleClick={handleClick}
-            id={createGroup.id}
-            groupName={groupName}
-            color={color}
-            create={create}
-          />
-        ) : (
-          <LeftSidePannel
-            handleClick={handleClick}
-            //   id={createGroup.id}
-            //   groupName={groupName}
-            //   color={color}
-            //   create={create}
-          />
-        )} */}
+       {/*  desktop version */}
         {submitCheck() ? (
           <div className={StyleHomeMainPage.hideWhenMobile}>
           <LeftSidePannel
             handleClick={handleClick}
+            handleUserIdClicked={handleUserIdClicked}
             id={id}
             groupName={groupName}
             color={color}
@@ -195,13 +107,13 @@ console.log(userIdClicked+"kjk");
           </div>
         ) : (
           <div className={StyleHomeMainPage.hideWhenMobile}>
-          <LeftSidePannel handleClick={handleClick} />
+          <LeftSidePannel handleClick={handleClick}handleUserIdClicked={handleUserIdClicked} />
           </div>
         )}
         {
           (userIdClicked>0) ? (
             <div className={StyleHomeMainPage.hideWhenMobile}>
-            <Notes/>
+            <Notes userIdClicked={userIdClicked}/>
             </div>
           ):(
             <div className={StyleHomeMainPage.hideWhenMobile}>
@@ -214,6 +126,7 @@ console.log(userIdClicked+"kjk");
         <div className={StyleHomeMainPage.hideWhenPc}>
           <LeftSidePannel
             handleClick={handleClick}
+            handleUserIdClicked={handleUserIdClicked}
             id={id}
             groupName={groupName}
             color={color}
@@ -224,7 +137,7 @@ console.log(userIdClicked+"kjk");
         ) : (
           (isVisible) ?(
           <div className={StyleHomeMainPage.hideWhenPc} onClick={()=>setIsVisible(false)}>
-          <LeftSidePannel handleClick={handleClick}/>
+          <LeftSidePannel handleClick={handleClick} handleUserIdClicked={handleUserIdClicked}/>
           {console.log(isVisible)}
           </div>
           )
@@ -234,13 +147,14 @@ console.log(userIdClicked+"kjk");
         {
           (userIdClicked>0) ? (
             <div className={StyleHomeMainPage.hideWhenPc}>
-            <Notes/>
+            <Notes userIdClicked={userIdClicked}/>
             </div>
           ):(
             open > 0 && (
               <div className={StyleHomeMainPage.hideWhenPc}>
                 <LeftSidePannel
                   handleClick={handleClick}
+                  handleUserIdClicked={handleUserIdClicked}
                   id={id}
                   groupName={groupName}
                   color={color}
@@ -260,7 +174,6 @@ console.log(userIdClicked+"kjk");
 
 
       </div>
-      {/* {console.log(groupName,color)} */}
       {/* ?,modal  #################################################################### */}
       <Modal
         open={open}

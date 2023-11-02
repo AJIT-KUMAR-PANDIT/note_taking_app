@@ -1,17 +1,9 @@
-import { useLocalStorage } from "@rehooks/local-storage";
 import StyleNotes from "./Notes.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-const Notes = () => {
+const Notes = ({userIdClicked}) => {
   const [saveNotes, setSaveNotes] = useState(false);
-  const [displayingNotes, setDisplayingNotes] = useState({
-    id: 0,
-    notes: "",
-    time: "",
-    date: "",
-  });
-  const [userIdClicked] = useLocalStorage("userIdClicked");
-  const storedDataString = localStorage.getItem("notesData");
+  const storedDataString = localStorage.getItem("groupNamesData");
   const storedData = JSON.parse(storedDataString) || [];
   const [myNotes, setMyNotes] = useState({
     id: [],
@@ -20,16 +12,6 @@ const Notes = () => {
     date: [],
   });
 
-  // console.log(
-  //   myNotes.id +
-  //     " " +
-  //     myNotes.notes +
-  //     " notes" +
-  //     "[time =]" +
-  //     myNotes.time +
-  //     " [date =]" +
-  //     myNotes.date
-  // );
   const groupName = storedData[userIdClicked - 1].groupName;
   const color = storedData[userIdClicked - 1].color;
 
@@ -90,10 +72,10 @@ const Notes = () => {
     setMyNotes({ ...myNotes, notes: '' }); 
   };
   const saveMyNotes = () => {
-    const existingNotesData = localStorage.getItem("myNotesSave");
-    let existingNotes = JSON.parse(existingNotesData) || [];
+    const existinggroupNamesData = localStorage.getItem("myNotesSave");
+    let existingNotes = JSON.parse(existinggroupNamesData) || [];
 
-    if (myNotes.notes !== "") {
+    if (myNotes.notes !== "" && saveNotes === true) {
       existingNotes.push(myNotes);
       localStorage.setItem("myNotesSave", JSON.stringify(existingNotes));
     }
@@ -101,10 +83,10 @@ const Notes = () => {
   };
 
   const reterivingMyNotes = () => {
-    const existingNotesData = localStorage.getItem("myNotesSave");
+    const existinggroupNamesData = localStorage.getItem("myNotesSave");
   
-    if (existingNotesData) {
-      const existingNotes = JSON.parse(existingNotesData);
+    if (existinggroupNamesData) {
+      const existingNotes = JSON.parse(existinggroupNamesData);
   
       return( existingNotes.map((note, index) => (
        (userIdClicked === note.id) ?(

@@ -1,41 +1,13 @@
-import { writeStorage, useLocalStorage } from "@rehooks/local-storage";
 import NotesGroup from "../NotesGroup/NotesGroup";
 import StylesLeftSidePannel from "./LeftSidePannel.module.css";
 import React, { useState, useEffect } from "react";
 
-const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
+const LeftSidePannel = ({ handleClick,handleUserIdClicked, id, groupName, color, create }) => {
   const [clickedButton, setClickedButton] = useState(null);
-  //   //   storing data
+  
 
-  //   const dataStoreGroupNames = [
-
-  //   ];
-
-  //   dataStoreGroupNames.push({
-  //     id:id,
-  //     groupName: groupName,
-  //     color: color,
-  //     create: create,
-  //   })
-
-  // //   const dataStoreGroupNames = [
-  // //     {
-  // //         id: 0,
-  // //         groupName: groupName,
-  // //         color: color,
-  // //         create: create,
-  // //       },
-  // //   ];
-
-  //   const StringDataStoreGroupNames = JSON.stringify(dataStoreGroupNames);
-  //   localStorage.setItem("notesData", StringDataStoreGroupNames);
-
-  //   const storedDataString = localStorage.getItem("notesData");
-  //   const storedData = JSON.parse(storedDataString);
-
-  //   {console.log(groupName,color)}
-
-  const storedDataString = localStorage.getItem("notesData");
+  // Getting stored data
+  const storedDataString = localStorage.getItem("groupNamesData");
   const storedData = JSON.parse(storedDataString) || [];
   // changing id
   const newId =
@@ -48,7 +20,7 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
     color: color,
     create: create,
   };
-  const [userIdClicked] = useLocalStorage("userIdClicked");
+  
   // Append the new data to the existing array
 
   const submitCheck = () => {
@@ -62,13 +34,10 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
   useEffect(() => {
     if (submitCheck()) {
       storedData.push(newData);
-      localStorage.setItem("notesData", JSON.stringify(storedData));
+      localStorage.setItem("groupNamesData", JSON.stringify(storedData));
     }
   }, [groupName, create, newData]);
 
-  // window.addEventListener('beforeunload', () => {
-  //   localStorage.setItem("userIdClicked", 0);
-  //   });
 
   const handleButtonClick = (buttonId) => {
     setClickedButton(buttonId);
@@ -114,13 +83,10 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
                 <div className={StylesLeftSidePannel.notesGroupSlected}>
                   
                   <span
-                    // onClick={() => {
-                    //   localStorage.setItem("userIdClicked", group.id);
-                    // }}
                     className={StylesLeftSidePannel.act}
                     style={buttonStyle(group.id)}
                     onClick={(_) => {
-                      writeStorage("userIdClicked", group.id);
+                      handleUserIdClicked(group.id);
                       handleButtonClick(group.id);
                     }}
                   >
@@ -128,7 +94,7 @@ const LeftSidePannel = ({ handleClick, id, groupName, color, create }) => {
                       key={group.id}
                       groupName={group.groupName}
                       color={group.color}
-                      buttonColorId={userIdClicked}
+                      buttonColorId={group.id}
                     />
                   </span>
                 </div>
